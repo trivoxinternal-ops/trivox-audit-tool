@@ -1,0 +1,8 @@
+{
+  "name": "trivox-audit-tool",
+  "version": "1.0.0",
+  "description": "TRIVOX AI — Automation Audit Tool",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.37.0"
+  }
+}
