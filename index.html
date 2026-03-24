@@ -124,17 +124,19 @@
       justify-content: center;
       padding: 40px 24px 60px;
       position: relative;
+      background: radial-gradient(ellipse at center, rgba(46, 97, 254, 0.04) 0%, transparent 70%);
     }
 
     .q-container {
       width: 100%;
       max-width: 680px;
       position: relative;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.15);
       border-radius: 24px;
       padding: 60px 48px;
       backdrop-filter: blur(16px);
+      box-shadow: 0 0 60px rgba(46, 97, 254, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     .q-counter {
@@ -182,8 +184,8 @@
     }
 
     .q-input:focus {
-      border-color: #00F0FF;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08), 0 0 30px rgba(0, 240, 255, 0.1);
     }
 
     .q-input::placeholder { color: #555; }
@@ -1388,7 +1390,7 @@
 
       function initParticles() {
         particles = [];
-        const count = Math.floor((w * h) / 18000);
+        const count = Math.floor((w * h) / 10000);
         for (let i = 0; i < count; i++) {
           particles.push({
             x: Math.random() * w,
@@ -1396,7 +1398,8 @@
             vx: (Math.random() - 0.5) * 0.3,
             vy: (Math.random() - 0.5) * 0.3,
             r: Math.random() * 1.2 + 0.3,
-            a: Math.random() * 0.15 + 0.03,
+            a: Math.random() * 0.17 + 0.08,
+            isCyan: Math.random() > 0.5,
           });
         }
       }
@@ -1412,7 +1415,7 @@
           if (p.y > h) p.y = 0;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(46, 97, 254, ${p.a})`;
+          ctx.fillStyle = p.isCyan ? `rgba(0, 240, 255, ${p.a})` : `rgba(46, 97, 254, ${p.a})`;
           ctx.fill();
         });
 
@@ -1426,7 +1429,7 @@
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(46, 97, 254, ${0.03 * (1 - dist / 12000)})`;
+              ctx.strokeStyle = `rgba(46, 97, 254, ${0.06 * (1 - dist / 12000)})`;
               ctx.lineWidth = 0.5;
               ctx.stroke();
             }
